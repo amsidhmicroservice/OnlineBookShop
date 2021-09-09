@@ -1,5 +1,5 @@
 
-### ==============Dockerfile for OnlineBookShopFrontEnd===========
+### ==============Dockerfile for OnlineBookShopFrontEnd(/OnlineBookShop/OnlineBookShopFrontEnd/Dockerfile)===========
 
 ```
 ### STAGE 1: Build ###
@@ -18,7 +18,7 @@ ENTRYPOINT ["/bin/sh",  "-c",  "envsubst < /usr/share/nginx/html/assets/env.temp
 
 ```
 
-### ===============Dockerfile for OnlineBookshopBackend========
+### ===============Dockerfile for OnlineBookshopBackend(/OnlineBookShop/OnlineBookShopBackEnd/Dockerfile)========
 ```
 FROM adoptopenjdk/openjdk11:jdk-11.0.9.1_1
 VOLUME ["/tmp"]
@@ -28,11 +28,9 @@ COPY pom.xml pom.xml
 COPY Dockerfile Dockerfile
 ENTRYPOINT ["java","-jar","OnlineBookShopBackEnd.jar"]
 ```
-==============================================================================
-=====================Deployment yaml for FrontEnd============================
-####################################################
-#  OnlineShop FrontEnd Deployment
-####################################################
+
+###=================Deployment yaml for FrontEnd(/OnlineBookShop/deploymentfile/frontend/onlineshop-frontend-deployment.yaml)================
+```
 apiVersion: apps/v1
 kind: Deployment
 metadata:
@@ -64,11 +62,10 @@ spec:
           - name: API_URL
             value: http://34.121.0.201:8181/onlineshop/books
               
----
+```
 
-####################################################
-# OnlineShop Backend Service
-####################################################
+###============== OnlineShop Backend Service(/OnlineBookShop/deploymentfile/frontend/onlineshop-frontend-deployment.yaml)====================
+```
 apiVersion: v1
 kind: Service
 metadata:
@@ -82,11 +79,11 @@ spec:
     protocol: TCP
     targetPort: 80
   type: LoadBalancer
-==========================================================================
-==========================Depoyement yaml for Backend=====================
-####################################################
-#  OnlineShop BackEnd Deployment
-####################################################
+
+```  
+###======Deployment yaml for Backend(/OnlineBookShop/deploymentfile/backend/onlineshop-backend-deployment.yaml)======
+
+```
 apiVersion: apps/v1
 kind: Deployment
 metadata:
@@ -117,10 +114,10 @@ spec:
               protocol: TCP
       terminationGracePeriodSeconds: 30
 
----
-####################################################
-# OnlineShop Backend Service
-####################################################
+```
+###=========== OnlineShop Backend Service(/OnlineBookShop/deploymentfile/backend/onlineshop-backend-deployment.yaml)==========
+
+```
 apiVersion: v1
 kind: Service
 metadata:
@@ -134,5 +131,4 @@ spec:
   selector:
     app: onlineshop-backend
   type: LoadBalancer  
-  ===================================================
-  
+```  
