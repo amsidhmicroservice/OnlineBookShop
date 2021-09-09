@@ -1,5 +1,5 @@
 
-### ==============Dockerfile for OnlineBookShopFrontEnd(/OnlineBookShop/OnlineBookShopFrontEnd/Dockerfile)===========
+### Dockerfile for OnlineBookShopFrontEnd(/OnlineBookShop/OnlineBookShopFrontEnd/Dockerfile)
 
 ```
 ### STAGE 1: Build ###
@@ -9,7 +9,7 @@ COPY . .
 RUN npm install
 RUN npm run build --prod
 
-# ## STAGE 2: Run ## #
+### STAGE 2: Run ###
 FROM nginx:latest
 COPY --from=build-step /app/dist/OnlineBookShopFrontEnd /usr/share/nginx/html
 COPY ./nginx-custom.conf /etc/nginx/conf.d/default.conf
@@ -18,7 +18,8 @@ ENTRYPOINT ["/bin/sh",  "-c",  "envsubst < /usr/share/nginx/html/assets/env.temp
 
 ```
 
-### ===============Dockerfile for OnlineBookshopBackend(/OnlineBookShop/OnlineBookShopBackEnd/Dockerfile)========
+### Dockerfile for OnlineBookshopBackend(/OnlineBookShop/OnlineBookShopBackEnd/Dockerfile)
+
 ```
 FROM adoptopenjdk/openjdk11:jdk-11.0.9.1_1
 VOLUME ["/tmp"]
@@ -29,7 +30,8 @@ COPY Dockerfile Dockerfile
 ENTRYPOINT ["java","-jar","OnlineBookShopBackEnd.jar"]
 ```
 
-###=================Deployment yaml for FrontEnd(/OnlineBookShop/deploymentfile/frontend/onlineshop-frontend-deployment.yaml)================
+### Deployment yaml for FrontEnd(/OnlineBookShop/deploymentfile/frontend/onlineshop-frontend-deployment.yaml)
+
 ```
 apiVersion: apps/v1
 kind: Deployment
@@ -64,7 +66,8 @@ spec:
               
 ```
 
-###============== OnlineShop Backend Service(/OnlineBookShop/deploymentfile/frontend/onlineshop-frontend-deployment.yaml)====================
+### OnlineShop Backend Service(/OnlineBookShop/deploymentfile/frontend/onlineshop-frontend-deployment.yaml)
+
 ```
 apiVersion: v1
 kind: Service
@@ -80,8 +83,9 @@ spec:
     targetPort: 80
   type: LoadBalancer
 
-```  
-###======Deployment yaml for Backend(/OnlineBookShop/deploymentfile/backend/onlineshop-backend-deployment.yaml)======
+```
+
+### Deployment yaml for Backend(/OnlineBookShop/deploymentfile/backend/onlineshop-backend-deployment.yaml)
 
 ```
 apiVersion: apps/v1
@@ -115,7 +119,8 @@ spec:
       terminationGracePeriodSeconds: 30
 
 ```
-###=========== OnlineShop Backend Service(/OnlineBookShop/deploymentfile/backend/onlineshop-backend-deployment.yaml)==========
+
+### OnlineShop Backend Service(/OnlineBookShop/deploymentfile/backend/onlineshop-backend-deployment.yaml)
 
 ```
 apiVersion: v1
