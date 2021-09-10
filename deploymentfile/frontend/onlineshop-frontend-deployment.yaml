@@ -28,10 +28,6 @@ spec:
             cpu: "0.2"  
         ports:
         - containerPort: 8080
-        env:
-          - name: API_URL
-            value: http://35.232.235.87/onlineshop/books
-              
 ---
 
 ####################################################
@@ -48,4 +44,3 @@ spec:
   - port: 80
     protocol: TCP
     targetPort: 80
-  type: ClusterIP
