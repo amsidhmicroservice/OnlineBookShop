@@ -41,8 +41,7 @@ metadata:
   name: onlineshop-backend
 spec:
   ports:
-    - port: 8181
-      protocol: TCP
-      targetPort: 8181
+    - name: http
+      port: 8181
   selector:
     app: onlineshop-backend

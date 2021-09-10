@@ -41,6 +41,6 @@ spec:
   selector:
     app: onlineshop-frontend
   ports:
-  - port: 80
-    protocol: TCP
-    targetPort: 80
+  - name: http
+    port: 80
+
